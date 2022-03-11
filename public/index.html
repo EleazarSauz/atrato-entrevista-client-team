@@ -12,6 +12,32 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                100: '#3363FF',
+                200: '#001866',
+                300: '#99B1FF'
+              },
+              secondary:  {
+                100: '#FD8E35',
+                200: '#CA5B02',
+                300: '#FEC69A'
+              },
+              tertiary: {
+                100: '#F8F8F9',
+                200: '#E3E5E9',
+                300: '#FFFFFF'
+              }
+            }
+          }
+        }
+      }
+    </script>
     <title>Dashboard atrato</title>
   </head>
   <body>
