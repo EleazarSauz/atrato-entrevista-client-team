@@ -1,10 +1,10 @@
 import React from 'react';
 
-export const H1 = ({text}) => <h1 className="text-6xl">{text}</h1>
-export const H2 = ({text}) => <h2 className="text-5xl">{text}</h2>
-export const H3 = ({text}) => <h3 className="text-4l">{text}</h3>
-export const H4 = ({text}) => <h4 className="text-3xl">{text}</h4>
-export const H5 = ({text}) => <h5 className="text-2xl">{text}</h5>
-export const H6 = ({text}) => <h6 className="text-xl">{text}</h6>
+export const H1 = ({children, styles}) => <h1 className={`text-6xl ${styles}`}>{children}</h1>
+export const H2 = ({children, styles}) => <h2 className={`text-5xl ${styles}`}>{children}</h2>
+export const H3 = ({children, styles}) => <h3 className={`text-4l ${styles}`}>{children}</h3>
+export const H4 = ({children, styles}) => <h4 className={`text-3xl ${styles}`}>{children}</h4>
+export const H5 = ({children, styles}) => <h5 className={`text-2xl ${styles}`}>{children}</h5>
+export const H6 = ({children, styles}) => <h6 className={`text-xl ${styles}`}>{children}</h6>
 
 
