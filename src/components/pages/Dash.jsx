@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Filter from "../templates/Filter";
 import ListUser from "../templates/ListUser";
+import Loading from "../templates/Loading";
 
 function Dash() {
   const [listUser, setListUser] = useState([
@@ -67,30 +68,40 @@ function Dash() {
         pin: 2460,
       },
     },
-  ])
+  ]);
+  const [loading, setLoading] = useState(false);
   const getListUser = async () => {
-    const req = await fetch('https://jsonplaceholder.typicode.com/users')
-    const dataParse = await req.json()
-    console.log('req', dataParse)
-    setListUser(dataParse)
-  }
+    setLoading(true);
+    try {
+      const req = await fetch("https://jsonplaceholder.typicode.com/users");
+      const dataParse = await req.json();
+      console.log("req", dataParse);
+      setListUser(dataParse);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    getListUser()
-  }, [])
-  
+    getListUser();
+  }, []);
+
   return (
     <>
-      <div className="flex flex-col flex-1 w-full">
-        <header className="z-10 bg-white shadow-md fixed w-full">
-          <Filter/>
-        </header>
+        <div className="flex flex-col flex-1 w-full">
+          <header className="z-10 bg-white shadow-md fixed w-full">
+            <Filter />
+          </header>
 
-        <main className="h-full">
-          <div className="container px-6 mx-auto grid pt-72">
-            <ListUser data={listUser} />
-          </div>
-        </main>
-      </div>
+      {
+        loading ? <Loading/> :
+          <main className="h-full">
+            <div className="container px-6 mx-auto grid pt-72">
+              <ListUser data={listUser} />
+            </div>
+          </main>
+      }
+        </div>
     </>
   );
 }
