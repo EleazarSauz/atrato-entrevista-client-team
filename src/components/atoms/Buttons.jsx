@@ -1,7 +1,8 @@
-const primary = ({text="Estatus", onClick}) => (
+const primary = ({text="Estatus", onClick, disabled}) => (
   <button
     onClick={onClick}
     type="button"
+    disabled={disabled}
     className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-100 uppercase"
   >
     {text}
@@ -9,10 +10,11 @@ const primary = ({text="Estatus", onClick}) => (
   </button>
 );
 
-const secondary = ({text="editar", onClick}) => (
+const secondary = ({text="editar", onClick, disabled}) => (
     <button
         onClick={onClick}
       type="button"
+      disabled={disabled}
       className="inline-flex items-center px-4 py-2 border border-transparent rounded-md text-sm font-medium text-gray-400 bg-tertiary-100 uppercase"
     >
       {text}
@@ -20,10 +22,11 @@ const secondary = ({text="editar", onClick}) => (
     </button>
   );
 
-  const tertiary = ({text="borrar", onClick}) => (
+  const tertiary = ({text="borrar", onClick, disabled}) => (
     <button
         onClick={onClick}
       type="button"
+      disabled={disabled}
       className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-secondary-100 uppercase"
     >
       {text}

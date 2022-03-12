@@ -90,7 +90,7 @@ function Dash() {
     <>
         <div className="flex flex-col flex-1 w-full">
           <header className="z-10 bg-white shadow-md fixed w-full">
-            <Filter />
+            <Filter getListUser={getListUser} loading={loading} />
           </header>
 
       {

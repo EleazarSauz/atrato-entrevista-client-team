@@ -31,7 +31,7 @@ function BodyCard({ data }) {
         </div>
       </div>
 
-      <div className="sm:w-2/5 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+      <div className="sm:w-2/5 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left hidden sm:block">
         <div className="bg-tertiary-200 p-4">
           <div className="flex flex-col items-start text-center justify-center">
             <p className="text-gray-400 text-sm uppercase">full name</p>

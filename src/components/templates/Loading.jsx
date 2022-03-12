@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { H4 } from "../atoms/Text";
 
 const Loading = () => {
   const lottie = useRef(null);
@@ -20,9 +21,9 @@ const Loading = () => {
       </div>
 
       <div className="w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
-        <h1 className="title-font text-3xl mb-4 font-medium text-gray-900 eight-bits">
-          Cargando
-        </h1>
+        <H4 styles="text-primary-200">
+          Buscando Resultados
+        </H4>
       </div>
     </div>
   );
