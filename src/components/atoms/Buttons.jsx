@@ -1,29 +1,32 @@
-const primary = () => (
+const primary = ({text="Estatus", onClick}) => (
   <button
+    onClick={onClick}
     type="button"
     className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-100 uppercase"
   >
-    Estatus
+    {text}
     <i className="fas fa-caret-down ml-2"></i>
   </button>
 );
 
-const secondary = () => (
+const secondary = ({text="editar", onClick}) => (
     <button
+        onClick={onClick}
       type="button"
       className="inline-flex items-center px-4 py-2 border border-transparent rounded-md text-sm font-medium text-gray-400 bg-tertiary-100 uppercase"
     >
-      editar
+      {text}
       <i className="fas fa-pen ml-2"></i>
     </button>
   );
 
-  const tertiary = () => (
+  const tertiary = ({text="borrar", onClick}) => (
     <button
+        onClick={onClick}
       type="button"
       className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-secondary-100 uppercase"
     >
-      borrar
+      {text}
       <i className="fas fa-trash ml-2"></i>
     </button>
   );

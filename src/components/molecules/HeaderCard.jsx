@@ -17,7 +17,7 @@ function HeaderCard({data}) {
           <i className="fas fa-user fa-3x"></i>
         </div>
         <div className="flex flex-col items-start text-center justify-center ml-4">
-          <H4 styles="text-primary-200 font-semibold">{`${name} ${secondName} ${paternalName} ${maternalName}`}</H4>
+          <H4 styles="text-primary-200 font-semibold">{ paternalName ? `${name} ${secondName} ${paternalName} ${maternalName}` : name}</H4>
 
           <p className="text-base text-gray-400">ID: {id}</p>
         </div>

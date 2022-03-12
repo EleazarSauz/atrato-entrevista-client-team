@@ -42,24 +42,24 @@ function BodyCard({ data }) {
             <p className="mt-4 text-gray-400 text-sm uppercase">
               card number
             </p>
-            <p className="text-sm">{card.cardNumber}</p>
+            <p className="text-sm">{card?.cardNumber}</p>
           </div>
 
           <div className="flex justify-between">
             <div className="flex flex-col items-start text-center justify-center">
               <p className="mt-4 text-gray-400 text-sm uppercase">cvv</p>
-              <p className="text-sm">{card.cvv}</p>
+              <p className="text-sm">{card?.cvv}</p>
             </div>
 
             <div className="flex flex-col items-start text-center justify-center">
               <p className="mt-4 text-gray-400 text-sm uppercase">pin</p>
-              <p className="text-sm">{card.pin}</p>
+              <p className="text-sm">{card?.pin}</p>
             </div>
 
             <div className="flex flex-col items-start text-center justify-center">
               <p className="mt-4 text-gray-400 text-sm uppercase">exp</p>
               <p className="text-sm">
-                  {new Date(card.date).getMonth()}/{new Date(card.date).getUTCFullYear()} 
+                  {new Date(card?.date).getMonth()}/{new Date(card?.date).getUTCFullYear()} 
             </p>
             </div>
           </div>
