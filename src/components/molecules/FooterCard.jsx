@@ -1,12 +1,15 @@
 import React from 'react'
 import { ButtonPrimary, ButtonSecondary, ButtonTertiary } from '../atoms/Buttons'
+import Modal from '../organism/Modal'
 
-function FooterCard() {
+function FooterCard({data,
+  modalActive,
+  setModalActive}) {
   return (
     <div className="flex flex-col justify-end sm:flex-row mb-6">
 
       <div className="text-center hidden sm:block">
-        <ButtonSecondary />
+        <ButtonSecondary onClick={() => setModalActive(true)} />
       </div>
 
       <div className="text-center hidden sm:block">
@@ -16,6 +19,7 @@ function FooterCard() {
       <div className="sm:w-1/5 sm:hidden mt-4">
         <ButtonPrimary />
       </div>
+      <Modal defaultValues={data} modalActive={modalActive} setModalActive={setModalActive}/>
     </div>
   )
 }
