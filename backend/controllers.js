@@ -1,21 +1,48 @@
-const createUser = (req, res) => {
-    console.log('cresateUser')
-    res.status(200).json({message: "hello cresateUser :)"})
+const { User } = require('./models')
+
+
+const createUser = async (req, res) => {
+    try {
+        const user = new User(req.body);
+        
+        res.status(201).json(await user.save())
+    } catch (error) {
+        console.log('error', error)
+        res.status(500)
+    }
 }
 
-const updateUser = (req, res) => {
-    console.log('updateUser')
-    res.status(200).json({message: "hello updateUser :)"})
+const updateUser = async (req, res) => {
+    try {
+        const user = await User.find();
+        
+        res.status(200).json(user)
+    } catch (error) {
+        console.log('error', error)
+        res.status(500)
+    }
 }
 
-const deleteUser = (req, res) => {
-    console.log('deleteUser')
-    res.status(200).json({message: "hello deleteUser :)"})
+const deleteUser = async (req, res) => {
+    try {
+        const user = await User.find();
+        
+        res.status(200).json(user)
+    } catch (error) {
+        console.log('error', error)
+        res.status(500)
+    }
 }
 
-const getListUser = (req, res) => {
-    console.log('getListUser')
-    res.status(200).json({message: "hello getListUser :)"})
+const getListUser = async (req, res) => {
+    try {
+        const user = await User.find();
+        
+        res.status(200).json(user)
+    } catch (error) {
+        console.log('error', error)
+        res.status(500)
+    }
 }
 
 
