@@ -49,7 +49,7 @@ function Filter({
                       `}
                 onClick={() => setFilterType("name")}
               >
-                Nombre de Usuario
+                Nombre Usuario
               </button>
 
               <button
@@ -74,7 +74,7 @@ function Filter({
                       `}
                 onClick={() => setFilterType("id")}
               >
-                ID de usuario
+                ID usuario
               </button>
             </div>
             <input
