@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ButtonPrimary } from "../atoms/Buttons";
 import { H4 } from "../atoms/Text";
 
-function HeaderCard({ data, update }) {
+function HeaderCard({ data, update, setModalActive }) {
   const [dropStatus, setDropStatus] = useState(false);
   const [loading, setLoading] = useState(false)
   const { name, secondName, paternalName, maternalName, _id, status } = data;
@@ -29,7 +29,7 @@ function HeaderCard({ data, update }) {
           <p className="text-base text-gray-400">ID: {_id}</p>
         </div>
 
-        <div className="text-center sm:hidden text-gray-400">
+        <div onClick={() => setModalActive(true)} className="text-center sm:hidden text-gray-400">
           <i className="fas fa-pen ml-2"></i>
         </div>
       </div>
@@ -45,7 +45,7 @@ function HeaderCard({ data, update }) {
         >
           {
             loading ? 
-            <div className="py-12  text-primary-100">
+            <div className="py-12 text-primary-100">
               <i className="fas fa-spinner fa-xs fa-spin fa-2x" />
             </div>
             : 

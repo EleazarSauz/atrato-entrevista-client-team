@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import logo from "../../imgs/ColorLogo.png";
 import { ButtonSecondary, ButtonTertiary } from "../atoms/Buttons";
 
-function Filter({ getListUser, loading }) {
-  const [statusFilter, setStatusFilter] = useState(null);
-  const [userNameFilter, setUserNameFilter] = useState("");
-  const [userIDFilter, setUserIDFilter] = useState("");
-
-  const clearFilter = () => {
-    setStatusFilter(null);
-    setUserNameFilter("");
-    setUserIDFilter("");
-  };
+function Filter({
+  filterRules,
+  loading,
+  filterText,
+  setFilterText,
+  filterType,
+  setFilterType,
+  filterStatus,
+  setFilterStatus,
+  clearFilter,
+}) {
   return (
     <div className="flex p-5 pt-3 flex-col md:flex-row items-center justify-between max-w-6xl mx-auto">
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mb-2 md:mb-0">
         <img src={logo} className="h-6" alt="atrato" />
 
         <h2 className="mt-3 text-2xl font-semibold text-primary-200 hidden md:block">
@@ -24,32 +25,66 @@ function Filter({ getListUser, loading }) {
 
       <div className="flex flex-wrap items-center text-base justify-center">
         <div className="flex flex-col w-full">
-          <div className="relative mb-4">
-            <label htmlFor="name" className="leading-7 text-sm text-gray-600">
-              Nombre de usuario
-            </label>
+          <div className="relative mb-6">
+            <div className="flex items-center justify-center w-full">
+              <button
+                type="button"
+                disabled={loading}
+                className={`
+                        rounded-tl
+                        px-6
+                        py-2
+                        border-2 border-primary-100
+                        font-medium
+                        text-xs
+                        leading-tight
+                        uppercase
+                        ease-in-out
+                        w-1/2
+                        ${
+                          filterType === "name"
+                            ? "bg-primary-100 text-white"
+                            : "text-primary-100"
+                        }
+                      `}
+                onClick={() => setFilterType("name")}
+              >
+                Nombre de Usuario
+              </button>
+
+              <button
+                type="button"
+                disabled={loading}
+                className={`
+                        rounded-tr
+                        px-6
+                        py-2
+                        border-2 border-l-0 border-primary-100
+                        font-medium
+                        text-xs
+                        leading-tight
+                        uppercase
+                        ease-in-out
+                        w-1/2
+                        ${
+                          filterType === "id"
+                            ? "bg-primary-100 text-white"
+                            : "text-primary-100"
+                        }
+                      `}
+                onClick={() => setFilterType("id")}
+              >
+                ID de usuario
+              </button>
+            </div>
             <input
-              onChange={({ target }) => setUserNameFilter(target.value)}
-              value={userNameFilter}
+              onChange={({ target }) => setFilterText(target.value)}
+              value={filterText}
               type="text"
               id="name"
               name="name"
               disabled={loading}
-              className="w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out"
-            />
-          </div>
-          <div className="relative mb-4">
-            <label htmlFor="userID" className="leading-7 text-sm text-gray-600">
-              ID
-            </label>
-            <input
-              onChange={({ target }) => setUserIDFilter(target.value)}
-              value={userIDFilter}
-              type="text"
-              id="userID"
-              name="userID"
-              disabled={loading}
-              className="w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out"
+              className="w-full bg-white rounded-b border-2 border-t-0 border-primary-100 text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out"
             />
           </div>
 
@@ -69,12 +104,12 @@ function Filter({ getListUser, loading }) {
                         uppercase
                         ease-in-out
                         ${
-                          statusFilter === 0
+                          filterStatus === 1
                             ? "bg-primary-100 text-white"
                             : "text-primary-100"
                         }
                       `}
-                onClick={() => setStatusFilter(0)}
+                onClick={() => setFilterStatus(1)}
               >
                 Pendiente
               </button>
@@ -91,12 +126,12 @@ function Filter({ getListUser, loading }) {
                         uppercase
                         ease-in-out
                         ${
-                          statusFilter === 1
+                          filterStatus === 2
                             ? "bg-primary-100 text-white"
                             : "text-primary-100"
                         }
                       `}
-                onClick={() => setStatusFilter(1)}
+                onClick={() => setFilterStatus(2)}
               >
                 En Proceso
               </button>
@@ -114,12 +149,12 @@ function Filter({ getListUser, loading }) {
                         uppercase
                         ease-in-out
                         ${
-                          statusFilter === 2
+                          filterStatus === 3
                             ? "bg-primary-100 text-white"
                             : "text-primary-100"
                         }
                       `}
-                onClick={() => setStatusFilter(2)}
+                onClick={() => setFilterStatus(3)}
               >
                 Completado
               </button>
@@ -130,11 +165,21 @@ function Filter({ getListUser, loading }) {
 
       <div className="flex md:flex-col mt-4 md:mt-0">
         <div className="text-center md:mb-4">
-          <ButtonSecondary text="buscar" onClick={getListUser} disabled={loading}/>
+          <ButtonSecondary
+            text="filtrar"
+            icon="fas fa-filter"
+            onClick={filterRules}
+            disabled={loading}
+          />
         </div>
 
         <div className="text-center ml-4 md:ml-0">
-          <ButtonTertiary text="limpiar" onClick={clearFilter} disabled={loading}/>
+          <ButtonTertiary
+            text="limpiar"
+            icon="fas fa-broom"
+            onClick={clearFilter}
+            disabled={loading}
+          />
         </div>
       </div>
     </div>

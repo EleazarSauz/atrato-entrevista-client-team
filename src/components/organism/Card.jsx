@@ -43,11 +43,11 @@ function Card({data, update}) {
 
   return (
     <div className="border-2 border-gray-200 bg-tertiary-100 border-opacity-60 rounded-lg overflow-hidden px-8 mb-12 w-full shadow-lg">
-      <HeaderCard data={data} update={updateStatus}/>
+      <HeaderCard data={data} update={updateStatus} setModalActive={setModalUser}/>
 
       <BodyCard data={data}/>
 
-      <FooterCard data={data} deleteUser={deleteUser} modalActive={modalUser} setModalActive={setModalUser} />
+      <FooterCard data={data} deleteUser={deleteUser} modalActive={modalUser} setModalActive={setModalUser} update={updateStatus}/>
 
       <Modal defaultValues={data} modalActive={modalUser} setModalActive={setModalUser} submit={updateUserData} />
     </div>
