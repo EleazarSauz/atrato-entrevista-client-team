@@ -7,7 +7,7 @@ const createUser = async (req, res) => {
         const reqRandommer = await fetch("https://randommer.io/api/Card", {
             method: "GET",
             headers: {
-                "X-Api-Key": process.env.API_KEYRANDOMMER
+                "X-Api-Key": process.env.API_KEY_RANDOMMER
             },
         })
         
