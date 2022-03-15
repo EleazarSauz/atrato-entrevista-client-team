@@ -72,18 +72,36 @@ function Dash() {
   ]);
   const [loading, setLoading] = useState(false);
   const [modalAddUser, setModalAddUser] = useState(false)
+
+  const BASE_URL = "http://localhost:5000/"
+
   const getListUser = async () => {
     setLoading(true);
     try {
-      const req = await fetch("https://jsonplaceholder.typicode.com/users");
+      const req = await fetch(BASE_URL + "user");
       const dataParse = await req.json();
       console.log("req", dataParse);
-      // setListUser(dataParse);
+      setListUser(dataParse);
       setLoading(false);
     } catch (error) {
       setLoading(false);
     }
   };
+
+  const createUser = async (data) => {
+    console.log('data', data)
+    const req = await fetch(BASE_URL + "user", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    });
+    console.log('req.json()',  await req.json())
+    await getListUser()
+  }
+
+
   useEffect(() => {
     getListUser();
   }, []);
@@ -98,22 +116,20 @@ function Dash() {
         {loading ? (
           <Loading />
         ) : (
-          <main className="h-full">
-            <div className="container px-6 mx-auto grid pt-72">
-              <ListUser data={listUser} />
-            </div>
+          <main className="h-full md:pt-72 pt-80">
+              <ListUser data={listUser} update={getListUser} />
           </main>
         )}
       </div>
       {
         !loading &&
-        <div className="fixed h-14 w-28 bg-primary-100 bottom-12 right-12 rounded-md flex items-center text-white" onClick={() => setModalAddUser(true)}>
+        <div className="fixed h-14 w-28 bg-primary-100 bottom-12 right-12 rounded-md flex items-center text-white shadow- cursor-pointer" onClick={() => setModalAddUser(true)}>
           <p className="w-full text-center uppercase">Nuevo usuario</p>
           <i className="fas fa-plus mr-2"></i>
         </div>
       }
 
-      <Modal modalActive={modalAddUser} setModalActive={setModalAddUser} type="add"/>
+      <Modal modalActive={modalAddUser} setModalActive={setModalAddUser} submit={createUser} type="add"/>
     </>
   );
 }

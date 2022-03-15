@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import logo from "../../imgs/BlackLogo.png";
 
-function Modal({ modalActive, setModalActive, defaultValues, type="edit" }) {
+function Modal({ modalActive, setModalActive, defaultValues, type="edit", submit }) {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -12,6 +12,7 @@ function Modal({ modalActive, setModalActive, defaultValues, type="edit" }) {
     setErrorMessage("");
     setLoading(true);
     try {
+      await submit(data)
       setTimeout(() => {
         console.log("data :>> ", data);
         setLoading(false);
@@ -23,6 +24,7 @@ function Modal({ modalActive, setModalActive, defaultValues, type="edit" }) {
       console.error("err m:>> ", error);
       setErrorMessage(error.message);
     }
+    
   };
 
   return (
@@ -178,7 +180,7 @@ function Modal({ modalActive, setModalActive, defaultValues, type="edit" }) {
               <div className="flex flex-col pt-3">
                 <label>
                   <input
-                    type="text"
+                    type="date"
                     id="birthday"
                     placeholder="Fecha de Nacimiento"
                     name="birthday"

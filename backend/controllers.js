@@ -1,20 +1,30 @@
 const { User } = require('./models')
-
+const fetch = require('node-fetch')
 
 const createUser = async (req, res) => {
     try {
-        const user = new User(req.body);
+        
+        const reqRandommer = await fetch("https://randommer.io/api/Card", {
+            method: "GET",
+            headers: {
+                "X-Api-Key": process.env.API_KEYRANDOMMER
+            },
+        })
+        
+        const card = await reqRandommer.json()
+
+        const user = new User({...req.body, card})
         
         res.status(201).json(await user.save())
     } catch (error) {
         console.log('error', error)
-        res.status(500)
+        res.status(400).json(error)
     }
 }
 
 const updateUser = async (req, res) => {
     try {
-        const user = await User.find();
+        const user = await User.find()
         
         res.status(200).json(user)
     } catch (error) {
@@ -25,9 +35,9 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     try {
-        const user = await User.find();
+        await User.findByIdAndDelete(req.params.id)
         
-        res.status(200).json(user)
+        res.status(200).json({message: 'User deleted successfully'})
     } catch (error) {
         console.log('error', error)
         res.status(500)
@@ -36,7 +46,7 @@ const deleteUser = async (req, res) => {
 
 const getListUser = async (req, res) => {
     try {
-        const user = await User.find();
+        const user = await User.find()
         
         res.status(200).json(user)
     } catch (error) {

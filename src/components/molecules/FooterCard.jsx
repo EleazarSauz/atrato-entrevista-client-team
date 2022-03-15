@@ -4,7 +4,9 @@ import Modal from '../organism/Modal'
 
 function FooterCard({data,
   modalActive,
-  setModalActive}) {
+  setModalActive,
+  deleteUser
+}) {
   return (
     <div className="flex flex-col justify-end sm:flex-row mb-6">
 
@@ -13,7 +15,7 @@ function FooterCard({data,
       </div>
 
       <div className="text-center hidden sm:block">
-        <ButtonTertiary />
+        <ButtonTertiary onClick={() => deleteUser(data._id)} />
       </div>
 
       <div className="sm:w-1/5 sm:hidden mt-4">
