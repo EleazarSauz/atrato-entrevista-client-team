@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true },
     phone: { type: String, required: true },
     birthday: { type: Date, required: true },
-    status: { type: Number, default: 0 },
+    status: { type: Number, default: 1 },
     analyst: { type: String, required: true },
     card: { type: mongoose.Schema.Types.Mixed, required: true },
   });

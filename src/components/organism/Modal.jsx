@@ -4,25 +4,19 @@ import logo from "../../imgs/BlackLogo.png";
 
 function Modal({ modalActive, setModalActive, defaultValues, type="edit", submit }) {
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   const { register, handleSubmit, formState: { errors } } = useForm(defaultValues);
 
   const onSubmit = async (data) => {
-    setErrorMessage("");
     setLoading(true);
     try {
       await submit(data)
-      setTimeout(() => {
-        console.log("data :>> ", data);
-        setLoading(false);
-        setModalActive(false);
-      }, 2000);
+      setLoading(false);
+      setModalActive(false);
 
     } catch (error) {
       setLoading(false);
       console.error("err m:>> ", error);
-      setErrorMessage(error.message);
     }
     
   };
@@ -70,7 +64,6 @@ function Modal({ modalActive, setModalActive, defaultValues, type="edit", submit
                     id="email"
                     placeholder="Correo"
                     name="email"
-                    onChange={() => setErrorMessage("")}
                     {...register("email", { required: true, value: defaultValues?.email  })}
                     style={
                       errors.email
@@ -89,7 +82,6 @@ function Modal({ modalActive, setModalActive, defaultValues, type="edit", submit
                     id="phone"
                     placeholder="Teléfono"
                     name="phone"
-                    onChange={() => setErrorMessage("")}
                     {...register("phone", { required: true, value: defaultValues?.phone })}
                     style={
                       errors.phone
@@ -108,7 +100,6 @@ function Modal({ modalActive, setModalActive, defaultValues, type="edit", submit
                     id="name"
                     placeholder="Nombre"
                     name="name"
-                    onChange={() => setErrorMessage("")}
                     {...register("name", { required: true, value: defaultValues?.name })}
                     style={
                       errors.name
@@ -127,7 +118,6 @@ function Modal({ modalActive, setModalActive, defaultValues, type="edit", submit
                     id="secondName"
                     placeholder="Segundo nombre"
                     name="secondName"
-                    onChange={() => setErrorMessage("")}
                     {...register("secondName", { required: true, value: defaultValues?.secondName })}
                     style={
                       errors.secondName
@@ -146,7 +136,6 @@ function Modal({ modalActive, setModalActive, defaultValues, type="edit", submit
                     id="paternalName"
                     placeholder="Apellido Paterno"
                     name="paternalName"
-                    onChange={() => setErrorMessage("")}
                     {...register("paternalName", { required: true, value: defaultValues?.paternalName })}
                     style={
                       errors.paternalName
@@ -165,7 +154,6 @@ function Modal({ modalActive, setModalActive, defaultValues, type="edit", submit
                     id="maternalName"
                     placeholder="Apellido Materno"
                     name="maternalName"
-                    onChange={() => setErrorMessage("")}
                     {...register("maternalName", { required: true, value: defaultValues?.maternalName })}
                     style={
                       errors.maternalName
@@ -184,7 +172,6 @@ function Modal({ modalActive, setModalActive, defaultValues, type="edit", submit
                     id="birthday"
                     placeholder="Fecha de Nacimiento"
                     name="birthday"
-                    onChange={() => setErrorMessage("")}
                     {...register("birthday", { required: true, value: defaultValues?.birthday })}
                     style={
                       errors.birthday
@@ -203,7 +190,6 @@ function Modal({ modalActive, setModalActive, defaultValues, type="edit", submit
                     id="analyst"
                     placeholder="Analista asignado"
                     name="analyst"
-                    onChange={() => setErrorMessage("")}
                     {...register("analyst", { required: true, value: defaultValues?.analyst })}
                     style={
                       errors.analyst
@@ -213,10 +199,6 @@ function Modal({ modalActive, setModalActive, defaultValues, type="edit", submit
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
                   />
                 </label>
-              </div>
-
-              <div className="max-w-lg mx-auto text-center mt-2 text-red-500">
-                {errorMessage}
               </div>
 
               <button
